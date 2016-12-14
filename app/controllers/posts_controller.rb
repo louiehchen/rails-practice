@@ -19,7 +19,8 @@ class PostsController <  ApplicationController
   def create
     @user = User.find(params[:user_id])
     p params
-    @post = Post.new(title: params[:post][:title], body: params[:post][:body], user_id: @user.id)
+    # @post = Post.new(post_params, user_id: @user.id)
+    @post = @user.posts.new(post_params)
     if @post.save
       respond_to do |format|
         format.js{render 'show'}
