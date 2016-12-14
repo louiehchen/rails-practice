@@ -1,0 +1,12 @@
+<ul class="post-container">
+<% @posts.each do |post| %>
+   <li>
+      <h1><%= post.title %></h2><br>
+      <p><%= post.body %><br></p>
+  </li>
+<% end %>
+</div>
+</ul>
+
+<%= link_to 'Create a New Post', new_user_post_path, remote: true, id: "new-post-link" %>
+

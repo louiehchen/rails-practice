@@ -10,6 +10,10 @@ class PostsController <  ApplicationController
   def new
     @user = User.find(params[:user_id])
     @post = Post.new
+    respond_to do |format|
+      format.js{render "new"}
+      format.html
+    end
   end
 
   def create
@@ -17,7 +21,11 @@ class PostsController <  ApplicationController
     p params
     @post = Post.new(title: params[:post][:title], body: params[:post][:body], user_id: @user.id)
     if @post.save
-      redirect_to user_post_path(@user.id, @post.id)
+      respond_to do |format|
+        format.js{render 'show'}
+        format.html {render 'show'}
+      end
+      # redirect_to user_post_path(@user.id, @post.id)
     else
       render :new
     end
