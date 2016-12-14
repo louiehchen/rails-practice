@@ -1,9 +1,15 @@
-<ul class="post-container">
-<% @posts.each do |post| %>
-   <li>
-      <h1><%= post.title %></h2><br>
-      <p><%= post.body %><br></p>
-  </li>
+<ul class="post-container" style="align-content: center;">
+<% postMatrix = @posts.each_slice(4).to_a %>
+<% len = @posts.length/4 %>
+<% len.times do |row| %>
+  <% postMatrix[row].each do |post| %>
+  <div style="width: 25%; display: inline-block;">
+     <li>
+        <h1><%= post.title %></h2><br>
+        <p><%= post.body %><br></p>
+    </li>
+  </div>
+  <% end %>
 <% end %>
 </div>
 </ul>
